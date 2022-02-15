@@ -12,4 +12,5 @@
 */
 
 Auth::routes();
-Route::get('/', 'ArticleController@index');
+Route::get('/', 'ArticleController@index')->name('articles.index');
+Route::resource('/articles', ArticleController::class)->except(['index'])->middleware('auth');  // indexは'/'でアクセスする為除外

@@ -13,4 +13,5 @@
 
 Auth::routes();
 Route::get('/', 'ArticleController@index')->name('articles.index');
-Route::resource('/articles', ArticleController::class)->except(['index'])->middleware('auth');  // indexは'/'でアクセスする為除外
+Route::resource('/articles', ArticleController::class)->except(['index', 'show'])->middleware('auth');  // indexは'/'でアクセスする為除外。showはログインしていなくても見れるようにしたいので除外
+Route::resource('/articles', ArticleController::class)->only(['show']);

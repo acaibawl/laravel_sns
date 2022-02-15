@@ -12,7 +12,7 @@
 
     @guest {{--この行を追加--}}
     <li class="nav-item">
-      <a class="nav-link" href="">ログイン</a>
+      <a class="nav-link" href="{{ route('login') }}">ログイン</a>
     </li>
     @endguest {{--この行を追加--}}
       

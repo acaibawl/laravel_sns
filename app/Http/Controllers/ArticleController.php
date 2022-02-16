@@ -31,6 +31,13 @@ class ArticleController extends Controller
         $article->fill($request->all());
         $article->user_id = $request->user()->id;
         $article->save();
+
+        $request->tags->each(function ($tagName) use ($article) {
+            // firstOrCreateでテーブルに存在しなければ、そのレコードをテーブルに保存した上で、モデルを返します
+            $tag = Tag::firstOrCreate(['name' => $tagName]);
+            $article->tags()->attach($tag);
+        });
+
         return redirect()->route('articles.index');
     }
 
